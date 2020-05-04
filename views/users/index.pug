@@ -1,0 +1,31 @@
+extends ../layouts/common
+block nav
+  include ../layouts/nav
+block content
+  a(href='/users/create') Create a new User
+  table.table.mt-3
+    thead.thead-light
+      tr
+        th(scope='col') Avatar
+        th(scope='col') User Name
+        th(scope='col') Email
+        th(scope='col') Phone Number
+        th(scope='col') 
+        th(scope='col') 
+    tbody
+      each user in users
+        tr
+          td
+            if(!user.avatarUrl)
+              img.rounded-circle(src="https://icons.iconarchive.com/icons/papirus-team/papirus-status/512/avatar-default-icon.png",width='32px')
+            else
+              img.rounded-circle(src=user.avatarUrl , width ='32px')
+          td=user.name
+          td=user.email
+          td=user.phone
+          td
+            a(href=`/users/${user.id}/edit`) Edit
+          td
+            a(href=`/users/${user.id}/delete`) Delete
+block pagination
+  include ../layouts/pagination

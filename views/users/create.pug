@@ -1,0 +1,35 @@
+extends ../layouts/common
+block nav
+  include ../layouts/nav
+block content
+  h3 Create a new User
+  a(href='/users') Back
+  if errors
+    each error in errors
+      .alert.alert-danger= error
+  form(action='/users/create', method='POST',enctype='multipart/form-data')
+    .form-group.row
+      label.col-sm-2.col-form-label Email
+        span(style='color:red')  *
+      .col-sm-10
+        input.form-control(type='email', name='email',value = values ? values.email : "",required)
+    .form-group.row
+      label.col-sm-2.col-form-label User Name
+        span(style='color:red')  *
+      .col-sm-10
+        input.form-control(type='text', name='name',value = values ? values.name : "",required)
+    .form-group.row
+      label.col-sm-2.col-form-label Phone number
+        span(style='color:red')  *
+      .col-sm-10
+        input.form-control(type='text', name='phone',value = values ? values.phone : "",required)
+    .form-group.row
+      label.col-sm-2.col-form-label Password
+        span(style='color:red')  *
+      .col-sm-10
+        input.form-control(type='password', name='password',value = values ? values.password : "",required)
+    .form-group.row
+      label.col-sm-2.col-form-label Avatar:
+      .col-sm-10.pb-sm-3
+        input(type='file', name='avatarUrl')
+    button.btn.btn-primary Create

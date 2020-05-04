@@ -1,0 +1,24 @@
+extends ../layouts/common
+block nav
+  include ../layouts/nav
+block content
+  a(href='/books') Back
+  h1 Your Cart
+  table.table
+    thead.thead-light
+      tr
+        th(scope='col') Book Cover
+        th(scope='col') Book Title 
+        th(scope='col') Action
+    tbody
+      if(cart &&  books)
+        each book in books
+          tr
+            each item in cart
+              if book.id === item
+                td
+                  img(src= book.coverUrl ? book.coverUrl: 'https://ibf.org/site_assets/img/placeholder-book-cover-default.png', width='80px', height='100px')
+                td=book.title
+                td
+                  a(href=`/cart/delete/${book.id}`) Delete
+  a.btn.btn-secondary(href='/cart/transactions') Transaction

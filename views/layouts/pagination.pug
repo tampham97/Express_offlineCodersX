@@ -1,0 +1,55 @@
+nav(aria-label='Page navigation example')
+  ul.pagination.justify-content-center
+    if(pageSize < 3)
+      - var n = 1;
+      while n <= pageSize
+        li.page-item
+          a.page-link(href=`/${titleLink}?page=${n}`)= n++
+    else
+      if(currentPage == 1)
+        li.page-item.disabled
+          a.page-link(href='#', aria-label='Previous')
+            span(aria-hidden='true') &laquo;
+            span.sr-only Previous
+        li.page-item.active
+          a.page-link(href=`/${titleLink}?page=1`) 1
+        li.page-item
+          a.page-link(href=`/${titleLink}?page=2`) 2
+        li.page-item
+          a.page-link(href=`/${titleLink}?page=3`) 3
+        li.page-item
+          a.page-link(href=`/${titleLink}?page=${currentPage+1}`, aria-label='Next')
+            span(aria-hidden='true') &raquo;
+            span.sr-only Next
+      else
+        if(currentPage < pageSize)
+          li.page-item
+            a.page-link(href=`/${titleLink}?page=${currentPage-1}`, aria-label='Previous')
+              span(aria-hidden='true') &laquo;
+              span.sr-only Previous
+          li.page-item
+            a.page-link(href=`/${titleLink}?page=${currentPage-1}`)=`${currentPage-1}`
+          li.page-item.active
+            a.page-link(href=`/${titleLink}?page=${currentPage}`)=`${currentPage}`
+          li.page-item
+            a.page-link(href=`/${titleLink}?page=${currentPage+1}`)=`${currentPage+1}`
+          li.page-item
+            a.page-link(href=`/${titleLink}?page=${currentPage+1}`, aria-label='Next')
+              span(aria-hidden='true') &raquo;
+              span.sr-only Next
+        else
+          li.page-item
+            a.page-link(href=`/${titleLink}?page=${currentPage-1}`, aria-label='Previous')
+              span(aria-hidden='true') &laquo;
+              span.sr-only Previous
+          li.page-item
+            a.page-link(href=`/${titleLink}?page=${currentPage-2}`)=`${currentPage-2}`
+          li.page-item
+            a.page-link(href=`/${titleLink}?page=${currentPage-1}`)=`${currentPage-1}`
+          li.page-item.active
+            a.page-link(href=`/${titleLink}?page=${currentPage}`)=`${currentPage}`
+          li.page-item.disabled
+            a.page-link(href='', aria-label='Next')
+              span(aria-hidden='true') &raquo;
+              span.sr-only Next
+    

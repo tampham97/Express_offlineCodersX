@@ -1,0 +1,16 @@
+extends ../layouts/common
+block nav
+  include ../layouts/nav
+block content
+  a(href='/users') Back
+  h3 Edit User
+  form(action=`/users/${user.id}/edit`, method='POST')
+    .form-group.row
+      label.col-sm-2.col-form-label User Name
+      .col-sm-10
+        input.form-control(type='text', name='name',value=`${user.name}`)
+    .form-group.row
+      label.col-sm-2.col-form-label Phone Number 
+      .col-sm-10
+        input.form-control(type='text', name='phone',value=user.phone)
+    button.btn.btn-primary Done
