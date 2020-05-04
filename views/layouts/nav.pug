@@ -1,0 +1,21 @@
+nav.navbar.navbar-expand-sm.navbar-light.bg-light
+  a.navbar-brand(href='/') CodersX
+  button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNav', aria-controls='navbarNav', aria-expanded='false', aria-label='Toggle navigation')
+    span.navbar-toggler-icon
+  #navbarNav.collapse.navbar-collapse
+    ul.navbar-nav.mr-auto
+      li.nav-item
+        a.nav-link(href='/books') Library
+      li.nav-item
+        a.nav-link(href='/users') Users
+      li.nav-item
+        a.nav-link(href='/cart') Cart
+          span=!cartLength ? '': `(${cartLength})`
+      li.nav-item
+        a.nav-link(href='/transactions') Transactions
+    if user
+      a(href='/profile',class='d-flex align-items-center')
+        img.rounded-circle.mr-2(src=user.avatarUrl || 'https://res.cloudinary.com/tampham97/image/upload/v1588043930/avatar_default.png', width='32px')
+        span=user.name
+    else
+      a(href='/auth/login') Login

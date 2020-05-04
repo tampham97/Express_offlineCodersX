@@ -1,0 +1,26 @@
+extends ../layouts/common
+block nav
+  include ../layouts/nav
+block content
+  a(href='/transactions/create') Create a new Transaction
+  h3(class='py-3') Transaction List
+  table.table
+    thead.thead-light
+      tr
+        th(scope='col') User ID
+        th(scope='col') Book ID
+        th(scope='col') Status
+    tbody
+    if(transactions)
+      each obj in transactions 
+        tr
+          td=obj.userId
+          td=obj.bookId
+          td
+            if !obj.isComplete
+              a(href=`/transactions/${obj.id}/complete`) Complete
+            else
+              span(style='color:green') Completed
+block pagination
+  include ../layouts/pagination
+

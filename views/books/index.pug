@@ -1,0 +1,37 @@
+extends ../layouts/common
+block nav
+  include ../layouts/nav
+block content
+  a(href='/books/create') Add new Book
+  h1 Books List 
+  table.table
+    thead.thead-light
+      tr
+        th(scope='col') Book Cover
+        th(scope='col') Title
+        th(scope='col') Description
+        th(scope='col') 
+        th(scope='col')
+        th(scope='col')
+    tbody
+      each book in books
+        tr
+          td
+            if !book.coverUrl
+              img(src='https://ibf.org/site_assets/img/placeholder-book-cover-default.png', width='80px', height='100px')
+            else
+              img(src=book.coverUrl,width='80px', heigh='100px')
+          td=book.title
+          td=book.desc
+          td
+            a(href=`/books/${book.id}/edit`) Edit
+          td
+            a(href=`/books/${book.id}/delete`) Delete
+          td
+            if(cart.indexOf(book.id)=== -1)
+              a.btn.btn-success(href=`/cart/add/${book.id}`) Add to Cart
+            else
+              .btn.btn-secondary(disabled) In Cart
+block pagination
+  include ../layouts/pagination
+      

@@ -1,0 +1,33 @@
+extends ../layouts/common
+block nav
+  include ../layouts/nav
+block content
+  a(href='/users') Back
+  h3 Your Profile
+  form( method='POST')
+    .form-group.row
+      label.col-sm-2.col-form-label User Name
+      .col-sm-10
+        input.form-control(type='text', name='name',value=`${user.name}`)
+    .form-group.row
+      label.col-sm-2.col-form-label Phone Number 
+      .col-sm-10
+        input.form-control(type='text', name='phone',value=user.phone)
+    .form-group.row
+      label.col-sm-2.col-form-label Email
+      .col-sm-10
+        input.form-control(type='text', name='email',value=user.email)
+    .form-group.row
+      label.col-sm-2.col-form-label(for='avatar') Avatar
+      .col-sm-10
+        if(!user.avatarUrl)
+          img.rounded-circle(src=avatarUrl,width='250px')
+        else
+          img.rounded-circle(src=user.avatarUrl , width ='250px')
+        a.d-block(href='/profile/avatar') Change Avatar
+    button.btn.btn-primary Update
+    
+    
+    
+    
+    
